@@ -926,6 +926,8 @@ void BaseRealSenseNode::setupDevice()
             else if (sensor.is<rs2::pose_sensor>())
             {
                 _sensors_callback[module_name] = multiple_message_callback_function;
+                // set sensor option to disable enable_pose_jumping
+                sensor.set_option(RS2_OPTION_ENABLE_POSE_JUMPING, 0);
             }
             else
             {
@@ -1553,12 +1555,20 @@ void BaseRealSenseNode::pose_callback(rs2::frame frame)
     ros::Time t(frameSystemTimeSec(frame));
 
     geometry_msgs::PoseStamped pose_msg;
-    pose_msg.pose.position.x = -pose.translation.z;
-    pose_msg.pose.position.y = -pose.translation.x;
-    pose_msg.pose.position.z = pose.translation.y;
-    pose_msg.pose.orientation.x = -pose.rotation.z;
-    pose_msg.pose.orientation.y = -pose.rotation.x;
-    pose_msg.pose.orientation.z = pose.rotation.y;
+    // pose_msg.pose.position.x = -pose.translation.z;
+    // pose_msg.pose.position.y = -pose.translation.x;
+    // pose_msg.pose.position.z = pose.translation.y;
+    // pose_msg.pose.orientation.x = -pose.rotation.z;
+    // pose_msg.pose.orientation.y = -pose.rotation.x;
+    // pose_msg.pose.orientation.z = pose.rotation.y;
+    // pose_msg.pose.orientation.w = pose.rotation.w;
+
+    pose_msg.pose.position.x = pose.translation.x;
+    pose_msg.pose.position.y = pose.translation.y;
+    pose_msg.pose.position.z = pose.translation.z;
+    pose_msg.pose.orientation.x = pose.rotation.x;
+    pose_msg.pose.orientation.y = pose.rotation.y;
+    pose_msg.pose.orientation.z = pose.rotation.z;
     pose_msg.pose.orientation.w = pose.rotation.w;
 
     static tf2_ros::TransformBroadcaster br;

@@ -1,0 +1,33 @@
+digraph G {
+"t265r_odom_frame" -> "t265r_pose_frame"[label="Broadcaster: /t265r/realsense2_camera_manager\nAverage rate: 200.195 Hz\nMost recent transform: 1732106884.145 ( 0.010 sec old)\nBuffer length: 4.985 sec\n"];
+"t265l_odom_frame" -> "t265r_odom_frame"[label="Broadcaster: /t265l_to_t265r\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"l515_color_frame" -> "t265l_odom_frame"[label="Broadcaster: /l515_to_t265l\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"world" -> "l515_link"[label="Broadcaster: /world_to_l515\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"map" -> "world"[label="Broadcaster: /map_to_world\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"t265l_odom_frame" -> "t265l_pose_frame"[label="Broadcaster: /t265l/realsense2_camera_manager\nAverage rate: 200.382 Hz\nMost recent transform: 1732106884.147 ( 0.008 sec old)\nBuffer length: 4.985 sec\n"];
+"l515_link" -> "l515_color_frame"[label="Broadcaster: /l515/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"d415l_link" -> "d415l_color_frame"[label="Broadcaster: /d415l/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"d415l_color_frame" -> "d415l_color_optical_frame"[label="Broadcaster: /d415l/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"d415r_link" -> "d415r_color_frame"[label="Broadcaster: /d415r/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"d415r_color_frame" -> "d415r_color_optical_frame"[label="Broadcaster: /d415r/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"l515_link" -> "l515_depth_frame"[label="Broadcaster: /l515/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"l515_depth_frame" -> "l515_depth_optical_frame"[label="Broadcaster: /l515/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"l515_aligned_depth_to_color_frame" -> "l515_color_optical_frame"[label="Broadcaster: /l515/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"l515_link" -> "l515_aligned_depth_to_color_frame"[label="Broadcaster: /l515/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"l515_link" -> "camera_confidence_frame"[label="Broadcaster: /l515/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"camera_confidence_frame" -> "camera_confidence_optical_frame"[label="Broadcaster: /l515/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"t265l_pose_frame" -> "t265l_link"[label="Broadcaster: /t265l/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+"t265r_pose_frame" -> "t265r_link"[label="Broadcaster: /t265r/realsense2_camera_manager\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1732106884.154 sec old)\nBuffer length: 0.000 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1732106884.154"[ shape=plaintext ] ;
+ }->"map";
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1732106884.154"[ shape=plaintext ] ;
+ }->"d415l_link";
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1732106884.154"[ shape=plaintext ] ;
+ }->"d415r_link";
+}

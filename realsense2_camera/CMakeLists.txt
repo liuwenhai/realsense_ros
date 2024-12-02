@@ -39,9 +39,12 @@ if(SET_USER_BREAK_AT_STARTUP)
 endif()
 
 if (WIN32)
-find_package(realsense2 CONFIG REQUIRED)
+    find_package(realsense2 CONFIG REQUIRED)
 else()
-find_package(realsense2 2.50.0)
+    set(realsense2_DIR /usr/lib/x86_64-linux-gnu/cmake/realsense2)
+    find_package(realsense2 2.53.1)
+    # print realsense2_INCLUDE_DIR
+    message(STATUS "realsense2_INCLUDE_DIR: ${realsense2_INCLUDE_DIR}")
 endif()
 
 if(NOT realsense2_FOUND)
@@ -84,6 +87,7 @@ generate_messages(
     )
 
 set(CMAKE_NO_SYSTEM_FROM_IMPORTED true)
+include_directories(/usr/include)
 include_directories(
     include
     ${realsense2_INCLUDE_DIR}
@@ -113,9 +117,10 @@ add_library(${PROJECT_NAME}
 
 add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_generate_messages_cpp)
 add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
-
+message(STATUS "realsense2_INCLUDE_DIR: ${realsense2_INCLUDE_DIR}")
+message(STATUS "--------------------------------------------------")
 target_include_directories(${PROJECT_NAME}
-  PRIVATE ${realsense2_INCLUDE_DIR})
+  PRIVATE /home/wenhai/pub_repo/librealsense/include)
 
 target_link_libraries(${PROJECT_NAME}
     ${realsense2_LIBRARY}
@@ -131,7 +136,11 @@ target_link_libraries(${PROJECT_NAME}
     )
 endif()
 
-
+# print install path
+message(STATUS "CATKIN_PACKAGE_LIB_DESTINATION: ${CATKIN_PACKAGE_LIB_DESTINATION}")
+message(STATUS "CATKIN_PACKAGE_BIN_DESTINATION: ${CATKIN_PACKAGE_BIN_DESTINATION}")
+message(STATUS "CATKIN_PACKAGE_INCLUDE_DESTINATION: ${CATKIN_PACKAGE_INCLUDE_DESTINATION}")
+message(STATUS "CATKIN_PACKAGE_SHARE_DESTINATION: ${CATKIN_PACKAGE_SHARE_DESTINATION}")
 # Install nodelet library
 install(TARGETS ${PROJECT_NAME}
     ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
